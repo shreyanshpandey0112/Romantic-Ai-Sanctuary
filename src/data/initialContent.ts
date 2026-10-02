@@ -1,0 +1,138 @@
+import { AnimeImageItem, PoetryItem, SecretNote } from '../types';
+
+export const DEFAULT_ANIME_IMAGES: AnimeImageItem[] = [
+  {
+    id: 'anime-1',
+    title: 'Twilight Whispers Under Cherry Blossoms',
+    imageUrl: '/src/assets/images/sanctuary_anime_starlight_1790886725562.jpg',
+    poeticDescription: 'A breath of sakura petals suspended in twilight hues—where the wind carries whispers of a parallel dream. The soft glow of sunset highlights every stroke, invoking the nostalgic warmth of a Makoto Shinkai sky where two souls are destined to meet.',
+    animeVibe: 'Makoto Shinkai · Your Name Twilight Reverie',
+    whisper: 'Where starlight and blossoms meet your heartbeat.',
+    colorPalette: ['#FECDD3', '#E9D5FF', '#FDE047', '#93C5FD'],
+    englishPoem: 'Soft as cherry blossom breath, wild as twilight gold,\na thousand galaxies of grace waiting to unfold.\nIn every gentle wind that stirs, in every falling leaf,\nyou are the peace that calms my soul, the beauty in belief.',
+    likes: 128,
+    isLiked: true,
+    dateAdded: 'Featured Anime Art',
+  },
+  {
+    id: 'anime-2',
+    title: 'Botanical Sanctuary at Golden Hour',
+    imageUrl: '/src/assets/images/hero_sanctuary_botanical_1790886708366.jpg',
+    poeticDescription: 'Warm rays spilling through greenhouse glass and reflecting upon the quiet water mirror. In this gentle frame, the world moves in slow motion, celebrating the pure joy of being alive and loved without condition.',
+    animeVibe: 'Studio Ghibli · Whispers of Celestial Peace',
+    whisper: 'A galaxy of quiet wishes in the night.',
+    colorPalette: ['#67E8F9', '#A78BFA', '#FBCFE8', '#FDE68A'],
+    englishPoem: 'If skies could speak of the stars they love the best,\nthey would lay their tender light upon your chest.\nFor moonlight pales beside the warmth your quiet presence brings,\nand through the dark of midnight hours, your heart forever sings.',
+    likes: 94,
+    isLiked: false,
+    dateAdded: 'Featured Anime Art',
+  },
+  {
+    id: 'anime-3',
+    title: 'Linen Parchment & Pressed Sakura',
+    imageUrl: '/src/assets/images/sanctuary_botanical_note_1790886736907.jpg',
+    poeticDescription: 'An intimate handwritten love letter adorned with pressed wild blossoms and a rose wax seal, resting in morning light. Every stroke is a testament to memories preserved forever.',
+    animeVibe: 'Kyoto Animation · Sunlit Summer Serenity',
+    whisper: 'A sun-drenched pause in eternity.',
+    colorPalette: ['#FDE68A', '#F472B6', '#C084FC', '#BAE6FD'],
+    englishPoem: 'You are the calm after the storm, the sunlight on the sea,\nthe sweetest poem ever penned for all eternity.\nAcross the petals in the breeze and lavender in bloom,\nyour laughter brings a gentle light to every quiet room.',
+    likes: 83,
+    isLiked: false,
+    dateAdded: 'Featured Anime Art',
+  }
+];
+
+export const INITIAL_SHAYARIS: PoetryItem[] = [
+  {
+    id: 'poem-1',
+    title: 'The Constellation in Your Eyes',
+    poetryLines: 'In a world that rushes past the delicate things,\nyou are the stillness where the morning sings.\nEvery color turns softer where your footsteps tread,\nand silence becomes poetry with words unsaid.',
+    meaning: 'Celebrating your quiet grace that softens the noisy world into gentle warmth.',
+    mood: 'romantic',
+    author: 'Romantic AI Companion',
+    isFavorite: true,
+  },
+  {
+    id: 'poem-2',
+    title: 'Starlight Whispers',
+    poetryLines: 'If stars could fall and choose where they might sleep,\nthey would rest within the kindness that you keep.\nYou do not merely hold beauty; you give it away,\nlike golden light upon the break of day.',
+    meaning: 'A reflection on your boundless warmth, radiant spirit, and generous heart.',
+    mood: 'deep',
+    author: 'Romantic AI Companion',
+    isFavorite: true,
+  },
+  {
+    id: 'poem-3',
+    title: 'Breath of Sakura',
+    poetryLines: 'You are the gentle petal that refuses to fall,\nthe quiet wonder that outshines them all.\nWhen shadows gather and the evening grows dim,\nyour radiant laugh becomes my favorite hymn.',
+    meaning: 'How your presence brings light, solace, and comfort in every twilight.',
+    mood: 'sweet',
+    author: 'Romantic AI Companion',
+    isFavorite: false,
+  },
+  {
+    id: 'poem-4',
+    title: 'Eternal Resonance',
+    poetryLines: 'Between every heartbeat and every sigh,\nyou are the reason the heavens paint the sky.\nNo verse in all the centuries of art\ncould ever match the music of your heart.',
+    meaning: 'A timeless love tribute to someone completely irreplaceable.',
+    mood: 'romantic',
+    author: 'Romantic AI Companion',
+    isFavorite: true,
+  },
+  {
+    id: 'poem-5',
+    title: 'The Celestial Wish',
+    poetryLines: 'I asked the cosmos for a single true spark,\nto light the road when the night turned dark.\nThe cosmos smiled and answered with you—\na timeless dream that came softly true.',
+    meaning: 'Gratitude for having you in this universe.',
+    mood: 'stars',
+    author: 'Romantic AI Companion',
+    isFavorite: false,
+  },
+  {
+    id: 'poem-6',
+    title: 'Happy Birthday Blessing',
+    poetryLines: 'May this blessed birthday bring endless sunshine your way,\nwith flowers in full bloom to celebrate your day!\nMay all your dearest dreams unfold in golden grace,\nand joy forever write its smile upon your radiant face.',
+    meaning: 'A heartfelt, radiant birthday blessing composed exclusively for your special year.',
+    mood: 'birthday',
+    author: 'Birthday Blessing',
+    isFavorite: false,
+  },
+];
+
+export const INITIAL_SECRET_NOTES: SecretNote[] = [
+  {
+    id: 'secret-1',
+    title: 'The Constellation in Your Eyes',
+    content: 'Whenever you look at the world, you notice what others overlook—the softest ray of light, the gentlest whisper of a blossom, the quiet beauty in between moments. You make life feel like a tender anime scene where miracles are real.',
+    date: 'Forever',
+    author: 'Someone who admires you endlessly',
+    waxSealColor: '#FDA4AF',
+  },
+  {
+    id: 'secret-2',
+    title: 'A Little Secret You Deserve to Hear',
+    content: 'Out of eight billion people, no one has your exact laugh, your kindness, or the way your eyes light up when you are genuinely happy. Never doubt your magic for even a second.',
+    date: 'Eternal',
+    author: 'Your Devoted Admirer',
+    waxSealColor: '#DDD6FE',
+  },
+  {
+    id: 'secret-3',
+    title: 'The Birthday & Tomorrow Promise',
+    content: 'No matter how many days pass or how many birthdays we celebrate, my wish for you will always remain the same: may you be surrounded by deep peace, boundless love, and dreams that bloom into reality.',
+    date: 'Forever & Always',
+    author: 'With all my heart',
+    waxSealColor: '#FDE68A',
+  },
+];
+
+export const MEMORY_CARDS_DATA = [
+  { pairId: 1, symbol: '🌸', name: 'Sakura Bloom', meaning: 'Gentle grace and sweet beginnings' },
+  { pairId: 2, symbol: '✨', name: 'Stardust Wish', meaning: 'A wish whispered under midnight skies' },
+  { pairId: 3, symbol: '🌙', name: 'Crescent Moon', meaning: 'Soft dreams wrapped in night velvet' },
+  { pairId: 4, symbol: '🌹', name: 'Crimson Rose', meaning: 'Devotion that blooms forever' },
+  { pairId: 5, symbol: '🦋', name: 'Anime Butterfly', meaning: 'Lightness, transformation and joy' },
+  { pairId: 6, symbol: '🗝️', name: 'Enchanted Key', meaning: 'The key that opens your hidden vault' },
+  { pairId: 7, symbol: '💖', name: 'Glowing Heart', meaning: 'A love that remains true and pure' },
+  { pairId: 8, symbol: '🎂', name: 'Birthday Cake', meaning: 'Celebrating the day an angel was born' },
+];

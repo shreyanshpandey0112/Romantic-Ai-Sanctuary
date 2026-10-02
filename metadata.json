@@ -1,0 +1,6 @@
+{
+  "name": "Aura & Bloom — Creative Portfolio & Sanctuary",
+  "description": "An elegant, romantic creative portfolio showcasing photography and art with interactive games, AI poetic captions, ambient music, and delicate floral aesthetics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
