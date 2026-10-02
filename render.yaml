@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: romantic-ai-sanctuary
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: NODE_ENV=production tsx server.ts
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash

@@ -1,13 +1,17 @@
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
-import path from 'path';
+import path from 'node:path';
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
 
 dotenv.config();
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const requestedPort = Number(process.env.PORT ?? 3000);
+const geminiModel = process.env.GEMINI_MODEL ?? 'gemini-2.5-flash';
 
 function listenOnPort(port: number): Promise<number> {
   return new Promise((resolve, reject) => {
@@ -46,13 +50,13 @@ if (apiKey) {
 const romanticPoems = [
   {
     title: "The Constellation in Your Eyes",
-    poetryLines: "In a world that rushes past the delicate things,\nyou are the stillness where the morning sings.\nEvery color turns softer where your footsteps tread,\nand silence becomes poetry with words unsaid.",
+    poetryLines: "In a world that rushes past the delicate things,\nyou are the stillness where the morning sings.\nEvery color turns softer where your footsteps tread,\nand silence becomes poetry in the hush of your thread.",
     meaning: "A tribute to her gentle grace and serene warmth.",
     mood: "romantic"
   },
   {
     title: "Starlight Whispers",
-    poetryLines: "If stars could fall and choose where they might sleep,\nthey would rest within the kindness that you keep.\nYou don't just hold beauty; you give it away,\nlike golden light at the break of day.",
+    poetryLines: "If stars could fall and choose where they might sleep,\nthey would rest within the kindness that you keep.\nYou don't just hold beauty; you give it away,\nlike golden light at dawn that chooses to stay.",
     meaning: "A reflection on her boundless warmth and inner luminescence.",
     mood: "deep"
   },
@@ -70,7 +74,7 @@ const romanticPoems = [
   },
   {
     title: "Happy Birthday Blessing",
-    poetryLines: "May this blessed birthday bring endless sunshine your way,\nwith flowers in full bloom to celebrate your day!\nMay all your dearest dreams unfold in golden grace,\nand joy forever write its smile upon your radiant face.",
+    poetryLines: "May this blessed birthday bring endless sunshine your way,\nwith flowers in full bloom to celebrate your day!\nMay all your dearest dreams unfold in golden grace,\nand joy forever bloom in every place you trace.",
     meaning: "A heartfelt birthday blessing composed exclusively for her special day.",
     mood: "birthday"
   }
@@ -79,14 +83,14 @@ const romanticPoems = [
 // Fallback Anime/Image Descriptions
 const animeImageFallbacks = [
   {
-    poeticDescription: "A breath of sakura petals suspended in twilight hues—where the wind carries whispers of a parallel dream. The soft glow of sunset highlights every stroke, invoking the nostalgic warmth of a Makoto Shinkai sky where two souls are destined to meet.",
+    poeticDescription: "A breath of sakura petals suspended in twilight hues—where the wind carries whispers of a parallel dream. The soft glow of sunset highlights every stroke, invoking the hush of a first romance seen in the quiet of the evening sky.",
     animeVibe: "Makoto Shinkai Sunset Reverie · Ethereal Twilight",
     whisper: "Where the sky and petals meet your heartbeat.",
     colorPalette: ["#FECDD3", "#E9D5FF", "#FEF08A", "#67E8F9"],
     englishPoem: "Soft as cherry blossom breath, wild as twilight gold,\na thousand galaxies of grace waiting to unfold."
   },
   {
-    poeticDescription: "Gentle luminescence dancing across starlit shores. In the quiet universe of this frame, time pauses to marvel at the innocence and wonder captured—an anime romance frozen at the exact second before a miracle unfolds.",
+    poeticDescription: "Gentle luminescence dancing across starlit shores. In the quiet universe of this frame, time pauses to marvel at the innocence and wonder captured—an anime romance frozen between silence and wonder.",
     animeVibe: "Studio Ghibli Starry Meadow · Whimsical Peace",
     whisper: "Starlight woven into quiet grace.",
     colorPalette: ["#A7F3D0", "#BAE6FD", "#FDE68A", "#DDD6FE"],
@@ -132,7 +136,7 @@ Return ONLY a valid JSON object strictly matching this schema:
       }
 
       const response = await ai.models.generateContent({
-        model: 'gemini-3.8-flash',
+        model: geminiModel,
         contents,
         config: {
           responseMimeType: 'application/json',
@@ -178,7 +182,7 @@ Return ONLY a valid JSON object strictly matching this schema:
 }`;
 
       const response = await ai.models.generateContent({
-        model: 'gemini-3.8-flash',
+        model: geminiModel,
         contents: promptText,
         config: {
           responseMimeType: 'application/json',
@@ -196,7 +200,6 @@ Return ONLY a valid JSON object strictly matching this schema:
             poetryLines: parsed.poetryLines,
             meaning: parsed.meaning,
             mood: parsed.mood || mood || 'romantic',
-            // backward compat keys if frontend reads them
             shayariText: parsed.poetryLines,
             translation: parsed.meaning,
           });
@@ -221,11 +224,12 @@ Return ONLY a valid JSON object strictly matching this schema:
   });
 });
 
-
 async function startServer() {
   const port = await listenOnPort(requestedPort);
+  const distPath = path.resolve(__dirname, 'dist');
+  const hasBuiltAssets = fs.existsSync(path.resolve(distPath, 'index.html'));
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (!hasBuiltAssets && process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
       server: {
         middlewareMode: true,
@@ -238,9 +242,9 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    app.use(express.static(path.resolve(__dirname, 'dist')));
+    app.use(express.static(distPath));
     app.get('*', (_req, res) => {
-      res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+      res.sendFile(path.resolve(distPath, 'index.html'));
     });
   }
 
@@ -251,3 +255,4 @@ async function startServer() {
 }
 
 startServer();
+
